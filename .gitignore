@@ -10,7 +10,6 @@
 # Configuration files (may contain sensitive data)
 config.toml
 node-red.json
-node-red-mqtt-publisher.json
 
 # Build artifacts
 /release
