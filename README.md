@@ -1,19 +1,7 @@
 <div align="center">
 
   <!-- Logo/Icon -->
-  <pre>
-$$$$\ $\      $\  $$$\  $\   $\       $$$$\ $\   $\ $$$\
-$  _____|$$\    $$ |$  __$\ $$\  $ |      \__$  __|$ |  $ |\_$  _|
-$ |      $$\  $$ |$ /  $ |$$\ $ |         $ |   $ |  $ |  $ |
-$$$\    $\$\$ $ |$ |  $ |$ $\$ |         $ |   $ |  $ |  $ |
-$  __|   $ \$$  $ |$ |  $ |$ \$$ |         $ |   $ |  $ |  $ |
-$ |      $ |\$  /$ |$ |  $ |$ |\$$ |         $ |   $ |  $ |  $ |
-$$$$\ $ | \_/ $ |$$$  |$ | \$ |         $ |   \$$$  |$$$\
-\________|\__|     \__| \______/ \__|  \__|         \__|    \______/ \______|
-
-
-
-  </pre>
+  <h1>EMON TUI</h1>
 
   <!-- Badges -->
   [![Homebrew](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=homebrew&prefix=v&query=%24.emon_tui.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fracksync%2Fhomebrew-emon-tui%2Fmain%2FFormula%2Femon-tui.rb)](https://github.com/racksync/homebrew-emon-tui)
@@ -21,7 +9,7 @@ $$$$\ $ | \_/ $ |$$$  |$ | \$ |         $ |   \$$$  |$$$\
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   <!-- Tagline -->
-  **Real-time energy monitoring in your terminal**
+  Home Assistant Real-time energy monitoring in your terminal
 
   [Features](#-features) • [Install](#-installation) • [Config](#-configuration) • [Usage](#-usage)
 
