@@ -878,7 +878,7 @@ fn render_daily_energy_compact(f: &mut Frame, app: &AppState, area: Rect) {
 
     // Render each bar
     let bar_height = 1;
-    let items = vec![
+    let items = [
         ("PV Generation", day_pv, Color::Rgb(255, 215, 0)),
         ("Load Consumption", day_load, Color::Rgb(138, 161, 255)),
         ("Battery Charge", day_bat_charge, Color::Rgb(100, 255, 100)),
@@ -916,7 +916,7 @@ fn render_daily_energy_compact(f: &mut Frame, app: &AppState, area: Rect) {
         // Render value
         let value_area = Rect::new(inner.x + label_width + 1, y, value_width, bar_height);
         let value_text =
-            Paragraph::new(format!("{}", value_str)).style(Style::default().fg(Color::White));
+            Paragraph::new(value_str.to_string()).style(Style::default().fg(Color::White));
         f.render_widget(value_text, value_area);
 
         // Render background bar (full scale, low opacity - using darker version of color)
@@ -1307,17 +1307,6 @@ fn get_blue_gradient_color(ratio: f64) -> Color {
 fn get_soc_gradient_color(ratio: f64) -> Color {
     get_rainbow_gradient(ratio)
 }
-
-// Calculate perceived brightness and return appropriate text color
-fn get_brightness(color: Color) -> f64 {
-    if let Color::Rgb(r, g, b) = color {
-        // Use perceived brightness formula (ITU-R BT.709)
-        0.2126 * r as f64 + 0.7152 * g as f64 + 0.0722 * b as f64
-    } else {
-        128.0
-    }
-}
-
 fn get_solar_text_color(_ratio: f64) -> Color {
     // Always use white text for solar gauge for better aesthetics
     Color::Rgb(255, 255, 255)
@@ -1426,7 +1415,7 @@ fn wrap_text(text: &str, max_width: usize) -> Vec<String> {
     for word in text.split_whitespace() {
         if current_line.is_empty() {
             current_line = word.to_string();
-        } else if current_line.len() + word.len() + 1 <= max_width {
+        } else if current_line.len() + word.len() < max_width {
             current_line.push(' ');
             current_line.push_str(word);
         } else {
@@ -1443,10 +1432,10 @@ fn wrap_text(text: &str, max_width: usize) -> Vec<String> {
 }
 
 fn render_terminal_too_small(f: &mut Frame, area: Rect, min_width: u16, min_height: u16) {
-    let msg = format!("Terminal too small!");
+    let msg = "Terminal too small!".to_string();
     let min_size = format!("Minimum size: {}x{}", min_width, min_height);
     let current_size = format!("Current size: {}x{}", area.width, area.height);
-    let resize_msg = format!("Resize terminal to continue...");
+    let resize_msg = "Resize terminal to continue...".to_string();
 
     let lines = vec![
         Line::from(msg),
@@ -1467,15 +1456,13 @@ fn render_terminal_too_small(f: &mut Frame, area: Rect, min_width: u16, min_heig
         height: text_height,
     };
 
-    let paragraph = Paragraph::new(lines)
-        .alignment(Alignment::Center)
-        .block(
-            Block::default()
-                .borders(Borders::ALL)
-                .border_type(BorderType::Rounded)
-                .border_style(Style::default().fg(Color::Red))
-                .style(Style::default().bg(Color::Black)),
-        );
+    let paragraph = Paragraph::new(lines).alignment(Alignment::Center).block(
+        Block::default()
+            .borders(Borders::ALL)
+            .border_type(BorderType::Rounded)
+            .border_style(Style::default().fg(Color::Red))
+            .style(Style::default().bg(Color::Black)),
+    );
 
     f.render_widget(Clear, popup_area);
     f.render_widget(paragraph, popup_area);

@@ -10,10 +10,7 @@ use crossterm::{
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
-use ratatui::{
-    backend::CrosstermBackend,
-    Terminal,
-};
+use ratatui::{backend::CrosstermBackend, Terminal};
 use std::io;
 use std::path::PathBuf;
 use std::time::Duration;
@@ -21,8 +18,14 @@ use std::time::Duration;
 #[derive(Parser, Debug)]
 #[command(name = "emon")]
 #[command(about = "Terminal UI for real-time energy monitoring from Home Assistant")]
-#[command(version = "0.1.0 beta", disable_version_flag = true, disable_help_flag = true)]
-#[command(after_help = "EMON - Terminal UI for real-time energy monitoring from Home Assistant\n\nEMON")]
+#[command(
+    version = "0.1.0 beta",
+    disable_version_flag = true,
+    disable_help_flag = true
+)]
+#[command(
+    after_help = "EMON - Terminal UI for real-time energy monitoring from Home Assistant\n\nEMON"
+)]
 struct Args {
     #[arg(short, long, help = "Path to custom config file")]
     config: Option<PathBuf>,

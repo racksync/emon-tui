@@ -13,29 +13,29 @@ pub struct PowerData {
     pub grid_export: f64,
     pub load: f64,
     pub load_current: f64,
-    
+
     // Battery readings
     pub battery_power: f64,
     pub battery_voltage: f64,
     pub battery_soc: f64,
     pub battery_temp: f64,
     pub battery_current: f64,
-    
+
     // Inverter readings
     pub inverter_temp: f64,
     pub inverter_voltage: f64,
     pub inverter_frequency: f64,
     pub inverter_status: String,
-    
+
     // Grid readings
     pub grid_voltage: f64,
     #[allow(dead_code)]
     pub grid_ct_power: f64,
-    
+
     // Power factor
     pub load_power_factor: f64,
     pub grid_power_factor: f64,
-    
+
     // Daily energy totals
     pub day_battery_charge: f64,
     pub day_battery_discharge: f64,
@@ -43,20 +43,21 @@ pub struct PowerData {
     pub day_grid_export: f64,
     pub day_load_energy: f64,
     pub day_pv_energy: f64,
-    
+
     // Total energy
     #[allow(dead_code)]
     pub total_pv_generation: f64,
+    #[allow(dead_code)]
     pub remaining_solar: f64,
-    
+
     // Additional temperatures
     pub dc_transformer_temp: f64,
     pub radiator_temp: f64,
-    
+
     // Essential power
     #[allow(dead_code)]
     pub essential_power: f64,
-    
+
     // Statistics
     pub all_time_energy_usage_peak: f64,
     pub all_time_energy_usage_peak_date: String,
@@ -74,7 +75,7 @@ pub struct PowerData {
     pub load_energy_yesterday: f64,
     pub load_energy_total: f64,
     pub day_consume: f64,
-    
+
     #[allow(dead_code)]
     pub timestamp: Instant,
 }
@@ -159,11 +160,23 @@ impl AppState {
 
     pub async fn update(&mut self) -> Result<()> {
         // Core power sensors
-        let solar = self.ha.get_state(&self.config.home_assistant.entities.solar_production).await;
-        let grid_import = self.ha.get_state(&self.config.home_assistant.entities.grid_import).await;
-        let grid_export = self.ha.get_state(&self.config.home_assistant.entities.grid_export).await;
-        let load = self.ha.get_state(&self.config.home_assistant.entities.load_consumption).await;
-        
+        let solar = self
+            .ha
+            .get_state(&self.config.home_assistant.entities.solar_production)
+            .await;
+        let grid_import = self
+            .ha
+            .get_state(&self.config.home_assistant.entities.grid_import)
+            .await;
+        let grid_export = self
+            .ha
+            .get_state(&self.config.home_assistant.entities.grid_export)
+            .await;
+        let load = self
+            .ha
+            .get_state(&self.config.home_assistant.entities.load_consumption)
+            .await;
+
         // Load current (optional)
         let load_current = match &self.config.home_assistant.entities.load_current {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -191,7 +204,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Inverter sensors
         let inv_temp = match &self.config.home_assistant.entities.inverter_temp {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -209,7 +222,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Grid sensors
         let grid_voltage = match &self.config.home_assistant.entities.grid_voltage {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -219,7 +232,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Power factor sensors
         let load_power_factor = match &self.config.home_assistant.entities.load_power_factor {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -229,7 +242,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Daily energy sensors
         let day_bat_charge = match &self.config.home_assistant.entities.day_battery_charge {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -255,7 +268,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Total energy sensors
         let total_pv_gen = match &self.config.home_assistant.entities.total_pv_generation {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -265,7 +278,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Temperature sensors
         let dc_trans_temp = match &self.config.home_assistant.entities.dc_transformer_temp {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -275,7 +288,7 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        
+
         // Essential power
         let ess_power = match &self.config.home_assistant.entities.essential_power {
             Some(entity) => self.ha.get_state(entity).await.ok(),
@@ -283,11 +296,21 @@ impl AppState {
         };
 
         // Statistics sensors
-        let stat_energy_usage_peak = match &self.config.home_assistant.entities.all_time_energy_usage_peak {
+        let stat_energy_usage_peak = match &self
+            .config
+            .home_assistant
+            .entities
+            .all_time_energy_usage_peak
+        {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        let stat_energy_usage_peak_date = match &self.config.home_assistant.entities.all_time_energy_usage_peak_date {
+        let stat_energy_usage_peak_date = match &self
+            .config
+            .home_assistant
+            .entities
+            .all_time_energy_usage_peak_date
+        {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
@@ -299,7 +322,12 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        let stat_pv_power_peak_date = match &self.config.home_assistant.entities.all_time_pv_power_peak_date {
+        let stat_pv_power_peak_date = match &self
+            .config
+            .home_assistant
+            .entities
+            .all_time_pv_power_peak_date
+        {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
@@ -307,23 +335,31 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        let stat_pv_yield_peak_date = match &self.config.home_assistant.entities.all_time_pv_yield_peak_date {
+        let stat_pv_yield_peak_date = match &self
+            .config
+            .home_assistant
+            .entities
+            .all_time_pv_yield_peak_date
+        {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        let stat_daily_pv_power_peak = match &self.config.home_assistant.entities.daily_pv_power_peak {
-            Some(entity) => self.ha.get_state(entity).await.ok(),
-            None => None,
-        };
-        let stat_daily_pv_power_peak_date = match &self.config.home_assistant.entities.daily_pv_power_peak_date {
-            Some(entity) => self.ha.get_state(entity).await.ok(),
-            None => None,
-        };
+        let stat_daily_pv_power_peak =
+            match &self.config.home_assistant.entities.daily_pv_power_peak {
+                Some(entity) => self.ha.get_state(entity).await.ok(),
+                None => None,
+            };
+        let stat_daily_pv_power_peak_date =
+            match &self.config.home_assistant.entities.daily_pv_power_peak_date {
+                Some(entity) => self.ha.get_state(entity).await.ok(),
+                None => None,
+            };
         let stat_night_consume = match &self.config.home_assistant.entities.night_consume {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        let stat_pv_forecast_remain = match &self.config.home_assistant.entities.pv_forecast_remain {
+        let stat_pv_forecast_remain = match &self.config.home_assistant.entities.pv_forecast_remain
+        {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
@@ -331,10 +367,11 @@ impl AppState {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
         };
-        let stat_load_energy_yesterday = match &self.config.home_assistant.entities.load_energy_yesterday {
-            Some(entity) => self.ha.get_state(entity).await.ok(),
-            None => None,
-        };
+        let stat_load_energy_yesterday =
+            match &self.config.home_assistant.entities.load_energy_yesterday {
+                Some(entity) => self.ha.get_state(entity).await.ok(),
+                None => None,
+            };
         let stat_load_energy_total = match &self.config.home_assistant.entities.load_energy_total {
             Some(entity) => self.ha.get_state(entity).await.ok(),
             None => None,
@@ -345,8 +382,12 @@ impl AppState {
         };
 
         let solar_val = solar.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0);
-        let grid_import_val = grid_import.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0);
-        let grid_export_val = grid_export.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0);
+        let grid_import_val = grid_import
+            .map(|e| self.parse_entity_value(&e))
+            .unwrap_or(0.0);
+        let grid_export_val = grid_export
+            .map(|e| self.parse_entity_value(&e))
+            .unwrap_or(0.0);
         let load_val = load.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0);
 
         let data = PowerData {
@@ -354,54 +395,128 @@ impl AppState {
             grid_import: grid_import_val,
             grid_export: grid_export_val,
             load: load_val,
-            load_current: load_current.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            battery_power: bat_power.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            battery_voltage: bat_voltage.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
+            load_current: load_current
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            battery_power: bat_power
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            battery_voltage: bat_voltage
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
             battery_soc: bat_soc.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
             battery_temp: bat_temp.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            battery_current: bat_current.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
+            battery_current: bat_current
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
             inverter_temp: inv_temp.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            inverter_voltage: inv_voltage.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
+            inverter_voltage: inv_voltage
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
             inverter_frequency: inv_freq.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            inverter_status: inv_status.map(|e| e.state.clone()).unwrap_or_else(|| "Unknown".to_string()),
-            grid_voltage: grid_voltage.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            grid_ct_power: grid_ct_power.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            load_power_factor: load_power_factor.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            grid_power_factor: grid_power_factor.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_battery_charge: day_bat_charge.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_battery_discharge: day_bat_discharge.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_grid_import: day_grid_imp.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_grid_export: day_grid_exp.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_load_energy: day_load_ene.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_pv_energy: day_pv_ene.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            total_pv_generation: total_pv_gen.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            remaining_solar: remaining_sol.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            dc_transformer_temp: dc_trans_temp.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
+            inverter_status: inv_status
+                .map(|e| e.state.clone())
+                .unwrap_or_else(|| "Unknown".to_string()),
+            grid_voltage: grid_voltage
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            grid_ct_power: grid_ct_power
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            load_power_factor: load_power_factor
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            grid_power_factor: grid_power_factor
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_battery_charge: day_bat_charge
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_battery_discharge: day_bat_discharge
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_grid_import: day_grid_imp
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_grid_export: day_grid_exp
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_load_energy: day_load_ene
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_pv_energy: day_pv_ene
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            total_pv_generation: total_pv_gen
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            remaining_solar: remaining_sol
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            dc_transformer_temp: dc_trans_temp
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
             radiator_temp: rad_temp.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            essential_power: ess_power.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            all_time_energy_usage_peak: stat_energy_usage_peak.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            all_time_energy_usage_peak_date: stat_energy_usage_peak_date.map(|e| e.state.clone()).unwrap_or_default(),
-            all_time_load_peak: stat_load_peak.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            all_time_pv_power_peak: stat_pv_power_peak.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            all_time_pv_power_peak_date: stat_pv_power_peak_date.map(|e| e.state.clone()).unwrap_or_default(),
-            all_time_pv_yield_peak: stat_pv_yield_peak.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            all_time_pv_yield_peak_date: stat_pv_yield_peak_date.map(|e| e.state.clone()).unwrap_or_default(),
-            daily_pv_power_peak: stat_daily_pv_power_peak.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            daily_pv_power_peak_date: stat_daily_pv_power_peak_date.map(|e| e.state.clone()).unwrap_or_default(),
+            essential_power: ess_power
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            all_time_energy_usage_peak: stat_energy_usage_peak
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            all_time_energy_usage_peak_date: stat_energy_usage_peak_date
+                .map(|e| e.state.clone())
+                .unwrap_or_default(),
+            all_time_load_peak: stat_load_peak
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            all_time_pv_power_peak: stat_pv_power_peak
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            all_time_pv_power_peak_date: stat_pv_power_peak_date
+                .map(|e| e.state.clone())
+                .unwrap_or_default(),
+            all_time_pv_yield_peak: stat_pv_yield_peak
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            all_time_pv_yield_peak_date: stat_pv_yield_peak_date
+                .map(|e| e.state.clone())
+                .unwrap_or_default(),
+            daily_pv_power_peak: stat_daily_pv_power_peak
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            daily_pv_power_peak_date: stat_daily_pv_power_peak_date
+                .map(|e| e.state.clone())
+                .unwrap_or_default(),
             load_ratio: {
-                let max_power_w = self.config.home_assistant.max_solar_power.unwrap_or(18000.0);
+                let max_power_w = self
+                    .config
+                    .home_assistant
+                    .max_solar_power
+                    .unwrap_or(18000.0);
                 if max_power_w > 0.0 {
                     (load_val / max_power_w) * 100.0
                 } else {
                     0.0
                 }
             },
-            night_consume: stat_night_consume.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            pv_forecast_remain: stat_pv_forecast_remain.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            pv_forecast_today: stat_pv_forecast_today.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            load_energy_yesterday: stat_load_energy_yesterday.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            load_energy_total: stat_load_energy_total.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
-            day_consume: stat_day_consume.map(|e| self.parse_entity_value(&e)).unwrap_or(0.0),
+            night_consume: stat_night_consume
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            pv_forecast_remain: stat_pv_forecast_remain
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            pv_forecast_today: stat_pv_forecast_today
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            load_energy_yesterday: stat_load_energy_yesterday
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            load_energy_total: stat_load_energy_total
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
+            day_consume: stat_day_consume
+                .map(|e| self.parse_entity_value(&e))
+                .unwrap_or(0.0),
             timestamp: Instant::now(),
         };
 
