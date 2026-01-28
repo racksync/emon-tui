@@ -13,7 +13,7 @@
 
   [Features](#-features) • [Install](#-installation) • [Config](#-configuration) • [Usage](#-usage)
 
-  <img src="emon.png" width="600" alt="emon-tui screenshot">
+  <img src="emon-tui.png" width="600" alt="emon-tui screenshot">
 
 </div>
 
