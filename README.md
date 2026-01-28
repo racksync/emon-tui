@@ -19,32 +19,32 @@
 
 ---
 
-## ✨ Features
+## Features
 
-- ⚡ **Real-time power monitoring** from Home Assistant entities
-- 📊 **Visual gauges** with dynamic gradients for Solar, Load, and Battery
-- 📈 **Line charts** showing power history with Braille markers
-- 🔄 **Animated status** indicator with live updates
-- 🔋 **Battery monitoring** - SOC, voltage, current, temperature
-- 🌡️ **Temperature warnings** with dynamic color coding
-- 📡 **Grid monitoring** - voltage, frequency, power factor
-- 📅 **Daily energy tracking** - charge, discharge, import, export
-- 📉 **Trend indicators** (↑ Rising, ↓ Falling, → Stable)
-- ⏱️ **Configurable update interval** (realtime ~100ms or 1-10s)
-- 🍎 **macOS native** - Intel and Apple Silicon
+- **Real-time power monitoring** from Home Assistant entities
+- **Visual gauges** with dynamic gradients for Solar, Load, and Battery
+- **Line charts** showing power history with Braille markers
+- **Animated status** indicator with live updates
+- **Battery monitoring** - SOC, voltage, current, temperature
+- **Temperature warnings** with dynamic color coding
+- **Grid monitoring** - voltage, frequency, power factor
+- **Daily energy tracking** - charge, discharge, import, export
+- **Trend indicators** (Rising, Falling, Stable)
+- **Configurable update interval** (realtime ~100ms or 1-10s)
+- **macOS native** - Intel and Apple Silicon
 
 ---
 
-## 📦 Installation
+## Installation
 
-### 🍺 Homebrew (macOS)
+### Homebrew (macOS)
 
 ```bash
 brew tap racksync/homebrew-emon-tui
 brew install emon-tui
 ```
 
-### 🔧 Build from source
+### Build from source
 
 ```bash
 git clone https://github.com/racksync/emon-tui.git
@@ -56,7 +56,7 @@ The binary will be at `target/release/emon`.
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 On first run, **emon** creates `~/.emon/config.toml`. Edit it with your Home Assistant details:
 
@@ -91,7 +91,7 @@ load_consumption = "sensor.load_consumption"
 # See config.toml.example for all 62 sensors
 ```
 
-### 🔑 Getting your Home Assistant Token
+### Getting your Home Assistant Token
 
 1. Open Home Assistant → User profile (bottom left)
 2. Scroll to "Long-Lived Access Tokens"
@@ -100,7 +100,7 @@ load_consumption = "sensor.load_consumption"
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ```bash
 # Run
@@ -120,29 +120,29 @@ emon -h
 
 ---
 
-## 🎯 Supported Sensors (62)
+## Supported Sensors (62)
 
-### 🔌 Core Power (required)
+### Core Power (required)
 - Solar production • Grid import/export • Load consumption
 
-### 🔋 Battery
+### Battery
 - Power • Voltage • SOC • Temperature • Current
 
-### 🔌 Inverter
+### Inverter
 - Temperature • Voltage • Status • Frequency
 
-### 📡 Grid
+### Grid
 - Voltage • CT power • Power factor
 
-### 📊 Daily Energy
+### Daily Energy
 - Battery charge/discharge • Grid import/export • Load • PV
 
-### 📈 Statistics
+### Statistics
 - All-time peaks • Daily peaks • PV forecast • Consumption totals
 
 ---
 
-## 🎨 Color Coding
+## Color Coding
 
 | Metric | Green | Yellow | Red |
 |--------|-------|--------|-----|
@@ -153,7 +153,7 @@ emon -h
 
 ---
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 **No data showing?**
 - Verify entity IDs match Home Assistant exactly
@@ -171,7 +171,7 @@ emon -h
 
 ---
 
-## 🛠️ Development
+## Development
 
 ```bash
 # Build
@@ -197,7 +197,7 @@ cargo fmt
 
 ---
 
-## 🏢 About RACKSYNC
+## About RACKSYNC
 
 <div align="center">
 
@@ -208,27 +208,27 @@ cargo fmt
 
 </div>
 
-**RACKSYNC CO., LTD.** is a technology company based in 🇹🇭 Thailand specializing in:
+**RACKSYNC CO., LTD.** is a technology company based in Thailand specializing in:
 
-- 🏠 **Home Automation** - Smart home solutions with Home Assistant
-- 🔧 **DevOps Solutions** - CI/CD, monitoring, and infrastructure
-- ☁️ **Cloud Infrastructure** - Docker, Kubernetes, and cloud services
-- ⚙️ **System Integration** - End-to-end automation solutions
+- **Home Automation** - Smart home solutions with Home Assistant
+- **DevOps Solutions** - CI/CD, monitoring, and infrastructure
+- **Cloud Infrastructure** - Docker, Kubernetes, and cloud services
+- **System Integration** - End-to-end automation solutions
 
 ### Our Projects
 
 | Project | Description | Stars |
 |---------|-------------|-------|
-| [hass-addons-suite](https://github.com/racksync/hass-addons-suite) | Home Assistant Add-ons | ⭐ |
-| [hass-addons-cloudflared-tunnel](https://github.com/racksync/hass-addons-cloudflared-tunnel) | Cloudflare Tunnel Add-on | ⭐ |
-| [hass-addons-multipoint-zigbee](https://github.com/racksync/hass-addons-multipoint-zigbee) | Zigbee2MQTT Coordinator | ⭐ |
-| [emon-tui](https://github.com/racksync/emon-tui) | Energy Monitoring TUI | ⭐ |
+| [hass-addons-suite](https://github.com/racksync/hass-addons-suite) | Home Assistant Add-ons |
+| [hass-addons-cloudflared-tunnel](https://github.com/racksync/hass-addons-cloudflared-tunnel) | Cloudflare Tunnel Add-on |
+| [hass-addons-multipoint-zigbee](https://github.com/racksync/hass-addons-multipoint-zigbee) | Zigbee2MQTT Coordinator |
+| [emon-tui](https://github.com/racksync/emon-tui) | Energy Monitoring TUI |
 
 **30 repositories** • **71 stars** • [View all projects](https://github.com/racksync?tab=repositories)
 
 ---
 
-## 📄 License
+## License
 
 MIT © [RACKSYNC CO., LTD.](https://github.com/racksync)
 
@@ -236,6 +236,6 @@ MIT © [RACKSYNC CO., LTD.](https://github.com/racksync)
 
 <div align="center">
 
-  **⭐ Star us on GitHub — it helps!**
+  **Star us on GitHub — it helps!**
 
 </div>
