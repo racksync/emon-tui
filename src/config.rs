@@ -243,7 +243,6 @@ fn get_config_path() -> Result<PathBuf> {
     Ok(config_dir.join("config.toml"))
 }
 
-
 pub fn load_config_at(custom_path: Option<&Path>) -> Result<Config> {
     let path = match custom_path {
         Some(p) => p.to_path_buf(),
