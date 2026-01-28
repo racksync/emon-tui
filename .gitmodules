@@ -1,0 +1,3 @@
+[submodule "homebrew-emon-tui"]
+	path = homebrew-emon-tui
+	url = https://github.com/racksync/homebrew-emon-tui.git

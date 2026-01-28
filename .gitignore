@@ -1,0 +1,44 @@
+# Rust
+/target
+**/*.rs.bk
+*.pdb
+
+# Cargo
+# Cargo.lock - commented out for libraries (packages should commit lockfile)
+# Uncomment for applications if you want to lock dependencies
+
+# Configuration files (may contain sensitive data)
+config.toml
+node-red.json
+
+# Build artifacts
+/release
+*.tar.gz
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+.DS_Store
+
+# Environment files (should never be committed)
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Debug files
+*.pdb
+debug/
+*.dSYM/
+
+# Testing
+.coverage
+*.profraw
+*.profdata
