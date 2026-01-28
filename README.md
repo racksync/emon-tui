@@ -4,7 +4,7 @@
   <h1>EMON TUI</h1>
 
   <!-- Badges -->
-  [![Homebrew](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=homebrew&prefix=v&query=%24.emon_tui.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fracksync%2Fhomebrew-emon-tui%2Fmain%2FFormula%2Femon-tui.rb)](https://github.com/racksync/homebrew-emon-tui)
+  [![Homebrew](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=homebrew&prefix=v&query=%24.emon_tui.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fracksync%2Fhomebrew-emon-tui%2Fmain%2Femon-tui.json)](https://github.com/racksync/homebrew-emon-tui)
   [![CI](https://github.com/racksync/emon-tui/actions/workflows/rust.yml/badge.svg)](https://github.com/racksync/emon-tui/actions/workflows/rust.yml)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
