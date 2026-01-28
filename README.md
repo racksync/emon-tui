@@ -1,7 +1,16 @@
 <div align="center">
 
   <!-- Logo/Icon -->
-  <img src="emon.png" width="200" alt="emon-tui logo">
+  <pre>
+  ____  ____  __    __   __    ___   __    _
+ / ___)(  _ \(  )  (  ) /  \  / __) /  \  ( )
+ \___ \ )___/ )(__  )( (  O )( (__ (  O )  \/
+ (____/(__)  (____)(__) \__/  \___) \__/  (_)
+  ____   __ _  _  _  ____  ___   ____   __
+ (  _ \ /  ( \/ )( \(  __)/ __) / ___) /  \
+  ) _ ((  O )) \/ ( ) _)) (__  \___ \(  O )
+ (____/ \__/ \____/(____)\___) (____/ \__/
+  </pre>
 
   <!-- Badges -->
   [![Homebrew](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=homebrew&prefix=v&query=%24.emon_tui.version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fracksync%2Fhomebrew-emon-tui%2Fmain%2FFormula%2Femon-tui.rb)](https://github.com/racksync/homebrew-emon-tui)
@@ -12,6 +21,8 @@
   **Real-time energy monitoring in your terminal**
 
   [Features](#-features) • [Install](#-installation) • [Config](#-configuration) • [Usage](#-usage)
+
+  <img src="emon.png" width="300" alt="emon-tui screenshot">
 
 </div>
 
