@@ -231,9 +231,40 @@ cargo fmt
 
 ---
 
+## 🏢 About RACKSYNC
+
+<div align="center">
+
+**ALL ABOUT AUTOMATION**
+
+[![Website](https://img.shields.io/badge/website-racksync.com-blue)](https://www.racksync.com)
+[![GitHub](https://img.shields.io/badge/github-racksync-black)](https://github.com/racksync)
+
+</div>
+
+**RACKSYNC CO., LTD.** is a technology company based in 🇹🇭 Thailand specializing in:
+
+- 🏠 **Home Automation** - Smart home solutions with Home Assistant
+- 🔧 **DevOps Solutions** - CI/CD, monitoring, and infrastructure
+- ☁️ **Cloud Infrastructure** - Docker, Kubernetes, and cloud services
+- ⚙️ **System Integration** - End-to-end automation solutions
+
+### Our Projects
+
+| Project | Description | Stars |
+|---------|-------------|-------|
+| [hass-addons-suite](https://github.com/racksync/hass-addons-suite) | Home Assistant Add-ons | ⭐ |
+| [hass-addons-cloudflared-tunnel](https://github.com/racksync/hass-addons-cloudflared-tunnel) | Cloudflare Tunnel Add-on | ⭐ |
+| [hass-addons-multipoint-zigbee](https://github.com/racksync/hass-addons-multipoint-zigbee) | Zigbee2MQTT Coordinator | ⭐ |
+| [emon-tui](https://github.com/racksync/emon-tui) | Energy Monitoring TUI | ⭐ |
+
+**30 repositories** • **71 stars** • [View all projects](https://github.com/racksync?tab=repositories)
+
+---
+
 ## 📄 License
 
-MIT © [racksync](https://github.com/racksync)
+MIT © [RACKSYNC CO., LTD.](https://github.com/racksync)
 
 ---
 
