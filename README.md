@@ -36,13 +36,13 @@
 - 📅 **Daily energy tracking** - charge, discharge, import, export
 - 📉 **Trend indicators** (↑ Rising, ↓ Falling, → Stable)
 - ⏱️ **Configurable update interval** (realtime ~100ms or 1-10s)
-- 🖥️ **Cross-platform** - macOS, Linux, Windows
+- 🍎 **macOS native** - Intel and Apple Silicon
 
 ---
 
 ## 📦 Installation
 
-### 🍺 Homebrew (macOS/Linux)
+### 🍺 Homebrew (macOS)
 
 ```bash
 brew tap racksync/homebrew-emon-tui
