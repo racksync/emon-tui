@@ -11,7 +11,7 @@
   <!-- Tagline -->
   Home Assistant Real-time energy monitoring in your terminal
 
-  [Features](#-features) • [Install](#-installation) • [Config](#-configuration) • [Usage](#-usage)
+  [Features](#features) • [Install](#installation) • [Config](#configuration) • [Usage](#usage)
 
   <img src="emon-tui.png" width="1000" alt="emon-tui screenshot">
 
